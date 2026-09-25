@@ -1,9 +1,9 @@
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
 
-from chains import Chain
-from portfolio import Portfolio
-from utils import clean_text
+from app.chains import Chain
+from app.portfolio import Portfolio
+from app.utils import clean_text
 
 
 def create_streamlit_app(llm, portfolio, clean_text):
@@ -21,7 +21,7 @@ def create_streamlit_app(llm, portfolio, clean_text):
                 skills = job.get('skills', [])
                 links = portfolio.query_links(skills)
                 email = llm.write_mail(job, links)
-                st.code(email, language='markdown')
+                st.markdown(email)
         except Exception as e:
             st.error(f"An Error Occurred: {e}")
 
