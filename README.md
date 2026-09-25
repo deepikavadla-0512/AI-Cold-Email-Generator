@@ -1,32 +1,90 @@
-# 📧 Cold Mail Generator
-Cold email generator for services company using groq, langchain and streamlit. It allows users to input the URL of a company's careers page. The tool then extracts job listings from that page and generates personalized cold emails. These emails include relevant portfolio links sourced from a vector database, based on the specific job descriptions. 
+# 📧 AI Cold Email Generator
 
-**Imagine a scenario:**
+An AI-powered cold email generator that extracts job information from a careers or job-posting webpage and creates personalized, professional cold emails based on the job role and the candidate's verified portfolio projects.
 
-- Nike needs a Principal Software Engineer and is spending time and resources in the hiring process, on boarding, training etc
-- Atliq is Software Development company can provide a dedicated software development engineer to Nike. So, the business development executive (Mohan) from Atliq is going to reach out to Nike via a cold email.
+The application uses **LangChain, Groq, ChromaDB, and Streamlit** to combine job information extraction with portfolio-based project matching and AI-generated email writing.
 
-![img.png](imgs/img.png)
+---
 
-## Architecture Diagram
-![img.png](imgs/architecture.png)
+## 🚀 Project Overview
 
-## Set-up
-1. To get started we first need to get an API_KEY from here: https://console.groq.com/keys. Inside `app/.env` update the value of `GROQ_API_KEY` with the API_KEY you created. 
+Applying to multiple job opportunities often requires writing a customized email for each position.
 
+The **AI Cold Email Generator** automates this process.
 
-2. To get started, first install the dependencies using:
-    ```commandline
-     pip install -r requirements.txt
-    ```
-   
-3. Run the streamlit app:
-   ```commandline
-   streamlit run app/main.py
-   ```
-   
+The user provides a job or careers page URL. The application:
 
-Copyright (C) Codebasics Inc. All rights reserved.
+1. Fetches the webpage content.
+2. Cleans the extracted text.
+3. Uses an LLM to identify job postings.
+4. Extracts the role, skills, and job description.
+5. Searches a portfolio vector database for relevant projects.
+6. Generates a personalized cold email.
+7. Displays the generated email directly in the Streamlit application.
 
-**Additional Terms:**
-This software is licensed under the MIT License. However, commercial use of this software is strictly prohibited without prior written permission from the author. Attribution must be given in all copies or substantial portions of the software.
+The generated email is designed to be professional, concise, and based only on the candidate's provided information and verified portfolio projects.
+
+---
+
+## ✨ Features
+
+- 🔗 Accepts job or careers page URLs
+- 🧠 AI-powered job information extraction
+- 📋 Extracts job roles, skills, and descriptions
+- 🔎 Semantic portfolio project matching using ChromaDB
+- ✉️ Generates personalized cold emails
+- 🛡️ Uses factual constraints to reduce unsupported claims
+- 💻 Simple Streamlit web interface
+- ☁️ Deployable using Streamlit Community Cloud
+- 🔐 API keys handled through environment variables / Streamlit Secrets
+
+---
+
+## 🛠️ Technologies Used
+
+- **Python**
+- **Streamlit**
+- **LangChain**
+- **Groq**
+- **LLM:** `openai/gpt-oss-120b` through Groq
+- **ChromaDB**
+- **Pandas**
+- **BeautifulSoup**
+- **Selenium**
+- **python-dotenv**
+- **Git & GitHub**
+
+---
+
+## 🏗️ Project Workflow
+
+```text
+Job / Careers Page URL
+          │
+          ▼
+   Web Page Loader
+          │
+          ▼
+     Text Cleaning
+          │
+          ▼
+   Job Information Extraction
+          │
+          ├── Role
+          ├── Skills
+          └── Description
+          │
+          ▼
+    ChromaDB Portfolio Search
+          │
+          ▼
+ Relevant Portfolio Projects
+          │
+          ▼
+     Groq LLM + Prompt
+          │
+          ▼
+ Personalized Cold Email
+          │
+          ▼
+      Streamlit UI
